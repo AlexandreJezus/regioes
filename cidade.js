@@ -7,27 +7,11 @@ const lerIndice = (mensagem) => parseInt(prompt(mensagem));
 const nomeInvalido = (nome) => nome == "";
 
 const indiceInvalido = (indice) =>
-  indice < 0 || indice >= pais.length || isNaN(indice);
+  indice < 0 || indice >= regioes.length || isNaN(indice);
 
 const modelo = () => {
-  let pais = {}; // não posso adicionar atributos em algo indefinido
+  let pais = {};
 
-  while (true) {
-    pais.nome = prompt("Qual é o nome do país? ");
-    if (nomeInvalido(pais.nome)) {
-      console.log("O nome não pode ser vazio");
-    } else {
-      break;
-    }
-  }
-  while (true) {
-    pais.estado = prompt("Qual é o nome do estado? ");
-    if (nomeInvalido(pais.estado)) {
-      console.log("O nome não pode ser vazio");
-    } else {
-      break;
-    }
-  }
   while (true) {
     pais.cidade = prompt("Qual é o nome da cidade? ");
     if (nomeInvalido(pais.cidade)) {
@@ -39,30 +23,30 @@ const modelo = () => {
   return pais;
 };
 
-const listagem = () =>
-  regioes.forEach((pais, i) => {
-    console.log(`${i + 1} - ${pais.nome} - ${pais.estado} - ${pais.cidade}`);
-  });
-
 const criar = () => {
   const pais = modelo();
 
   regioes.push(pais);
 
-  console.log("Região adicionada com sucesso.");
+  console.log("Cidade adicionada com sucesso.");
 };
+
+const listagem = () =>
+  regioes.forEach((pais, i) => {
+    console.log(`${i + 1} - ${pais.nome} - ${pais.estado} - ${pais.cidade}`);
+  });
 
 const atualizar = () => {
   while (true) {
     if (regioes.length == 0) {
-      console.log("Lista de regiões esta vazia.");
+      console.log("Lista de cidades esta vazia.");
       break;
     }
 
     listagem();
 
     const indice =
-      lerIndice("Qual é o indice do região que deseja atualizar? ") - 1;
+      lerIndice("Qual o indice de cidades que deseja atualizar? ") - 1;
 
     if (indiceInvalido(indice)) {
       console.log("Indice inválido");
@@ -79,7 +63,7 @@ const remover = () => {
     listagem();
 
     const indice =
-      lerIndice("Qual é o indice do país que deseja remover? ") - 1;
+      lerIndice("Qual é o indice de cidade que deseja remover? ") - 1;
 
     if (indiceInvalido(indice)) {
       console.log("Indice inválido");
@@ -90,7 +74,7 @@ const remover = () => {
         }
       });
       regioes.splice(indice, 1);
-      console.log("Região removida com sucesso");
+      console.log("Cidade removida com sucesso");
       break;
     }
   }
